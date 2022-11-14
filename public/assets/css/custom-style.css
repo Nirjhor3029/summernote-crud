@@ -193,8 +193,9 @@ body {
 
 /* Header */
 .header {
-    background-color: #fff;
+    /* background-color: #fff; */
     padding: 1.5rem 0;
+    /* height: 100vh; */
 }
 
 .header .header__inner {
@@ -204,10 +205,10 @@ body {
 }
 
 .header .header__title {
-    font-size: 24px;
-    font-weight: 600;
-    color: #007FFF;
-    margin-bottom: 1.5rem;
+    font-size: 30px;
+    font-weight: 800;
+    color: #484848;
+    /* margin-bottom: 1.5rem; */
     text-align: center;
 }
 
@@ -258,6 +259,7 @@ body {
 /* todo-form */
 .todo-form {
     width: 100%;
+    margin-top: 2vh;
 }
 
 .todo-form .todo-form__group {
@@ -274,7 +276,7 @@ body {
     width: 100%;
     border: 1px solid #ccc;
     border-radius: 4px;
-    margin-right: 0.5rem;
+    /* margin-right: 0.5rem; */
     font-size: 14px;
     color: #555;
     font-weight: 700;
@@ -324,6 +326,11 @@ body {
     margin-bottom: 1rem;
 }
 
+.todo-form .todo-form__text_area {
+    height: 80px;
+    padding: 10px;
+}
+
 /* body */
 .body {
     width: 100%;
@@ -350,7 +357,8 @@ body {
 }
 
 .card {
-    width: 32%;
+    /* width: 32%; */
+    width: 100%;
     -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     border-radius: 4px;
@@ -373,6 +381,10 @@ body {
     padding-bottom: 0.5rem;
 }
 
+.card .card__header .actions {
+    display: flex;
+}
+
 .card .card__title {
     font-size: 16px;
     color: #555;
@@ -382,9 +394,19 @@ body {
 .card .card__remove-icon {
     cursor: pointer;
 }
+.card .card__remove-icon .expand_more {
+    display: none;
+}
+.card .card__remove-icon .expand_less {
+    display: none;
+}
+.card .card__remove-icon .active {
+    display: block;
+}
 
 .card .card__remove-icon span {
-    font-size: 18px;
+    font-size: 20px;
+    padding: 0 10px;
     color: #555;
     -webkit-transition: 0.1s ease-in;
     transition: 0.1s ease-in;
@@ -397,6 +419,32 @@ body {
 .card .card__body {
     margin-top: 0.5rem;
     padding-bottom: 1rem;
+}
+
+.card .card__body .see_details {
+    text-align: right;
+    display: block;
+}
+
+.card .card__body .content {
+    transition: all .3s linear;
+    display: none;
+}
+.card .card__body .active {
+    display: block;
+}
+
+.is-visible {
+    display: block;
+}
+
+.is-open {
+    margin-top: 15px;
+    opacity: 1;
+}
+
+.hide {
+    display: none;
 }
 
 .card .card__footer {
@@ -525,6 +573,11 @@ body {
     line-height: 56px;
     cursor: pointer;
     z-index: 1111111;
+}
+
+.filters-toggler.back_btn{
+    left: 20px;
+    top: 20px;
 }
 
 .filters-toggler .filters-toggler__show span {

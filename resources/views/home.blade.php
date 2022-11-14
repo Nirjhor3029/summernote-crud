@@ -4,27 +4,6 @@
     <header class="header">
         <div class="header__inner container">
             <h1 class="header__title">Text Editor</h1>
-            <form class="todo-form" method="POST" action="{{ route('todo.post') }}">
-                @csrf
-                <div class="todo-form__group">
-                    <input type="text" name="title" required class="todo-form__input" placeholder="Todo Title..." />
-                </div>
-                <div class="todo-form__group">
-                    <textarea id="summernote" name="content" class="todo-form__textarea" rows="50">
-                    </textarea>
-                </div>
-                <button class="btn btn--primary">Submit</button>
-            </form>
-            <div class="header__filters">
-                <div class="header__filters__item">
-                    <span class="material-icons-outlined"> clear </span>
-                    blue
-                </div>
-                <div class="header__filters__item">
-                    <span class="material-icons-outlined"> clear </span>
-                    completed
-                </div>
-            </div>
         </div>
     </header>
     <!-- end header -->
@@ -43,26 +22,41 @@
                                     </a>
                                 </h3>
                                 <input type="hidden" class="todo_id" name="todo_id" value="{{ $item->id }}">
-                                <div class="card__remove-icon">
-                                    <span class="material-icons-outlined delete"> clear </span>
+                                <div class="actions">
+                                    <div class="card__remove-icon">
+                                        <a href="{{route('todo.download',[$item->id])}}">
+                                            <span class="material-icons-outlined"> download </span>
+                                        </a>
+                                    </div>
+                                    <div class="card__remove-icon">
+                                        <span class="material-icons-outlined expand expand_more  active"> expand_more </span>
+                                        <span class="material-icons-outlined expand expand_less"> expand_less </span>
+                                    </div>
+                                    <div class="card__remove-icon">
+                                        <a href="{{route('todo.update',[$item->id])}}">
+                                            <span class="material-icons-outlined edit"> edit </span>
+                                        </a>
+                                    </div>
+                                    <div class="card__remove-icon">
+                                        <span class="material-icons-outlined delete"> clear </span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="card__body">
                                 <p class="card__text">
-                                    {!! $item->content !!}
+                                    {!! $item->short_desc !!}
                                 </p>
-                            </div>
-                            <div class="card__footer">
-                                <div class="footer__item">
-                                    <span class="material-icons-outlined"> clear </span>
-                                    blue
+                                {{-- <a href="javascript:void(0)" class="see_details">See    details</a> --}}
+                                <div class="content">
+                                    <hr>
+                                    <p class="card__text">
+                                        {!! $item->content !!}
+                                    </p>
                                 </div>
-                                <div class="footer__item">
-                                    <span class="material-icons-outlined"> clear </span>
-                                    completed
-                                </div>
+                                
                             </div>
-                            <div class="card__dropdown">
+                            
+                            {{-- <div class="card__dropdown">
                                 <div class="card__dropdown__toggler">
                                     <span class="material-icons-outlined"> more_vert </span>
                                 </div>
@@ -85,7 +79,7 @@
                                         </div>
                                     </form>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     @endforeach
                 </div>
@@ -135,6 +129,31 @@
                         }
                     }
                 });
+            });
+
+            var expandActive = 1;
+            $(".expand").click(function (e) {
+                e.preventDefault();
+                let that = $(this);
+                let card = that.closest('.card');
+                let expandMore = card.find('.expand_more');
+                let expandLess = card.find('.expand_less');
+                let content = card.find('.content');
+
+
+
+
+                if(expandMore.hasClass("active")){
+                    expandMore.removeClass("active");
+                    expandLess.addClass("active");
+
+                    content.addClass("active");
+                }else{
+                    expandMore.addClass("active");
+                    expandLess.removeClass("active");
+
+                    content.removeClass("active");
+                }
             });
         });
     </script>
